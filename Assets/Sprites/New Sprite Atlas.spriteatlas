@@ -53,25 +53,25 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 63c9ffedc60aec5489f578af2b1f1e39, type: 3}
   - {fileID: 21300000, guid: 10324295bd4f79040a13cbd74259c6ca, type: 3}
   m_PackedSpriteNamesToIndex:
-  - genericItem_color_021
-  - genericItem_color_125
-  - genericItem_color_051
-  - genericItem_color_147
-  - genericItem_color_146
-  - genericItem_color_111
-  - genericItem_color_035
-  - genericItem_color_046
-  - genericItem_color_141
-  - genericItem_color_054
-  - genericItem_color_084
-  - genericItem_color_020
-  - genericItem_color_031
-  - genericItem_color_158
-  - genericItem_color_060
-  - genericItem_color_013
-  - genericItem_color_162
-  - genericItem_color_009
-  - genericItem_color_010
-  - genericItem_color_154
+  - item5
+  - item14
+  - item9
+  - item17
+  - item16
+  - item13
+  - item7
+  - item8
+  - item15
+  - item10
+  - item12
+  - item4
+  - item6
+  - item19
+  - item11
+  - item3
+  - item20
+  - item1
+  - item2
+  - item18
   m_Tag: New Sprite Atlas
   m_IsVariant: 0
