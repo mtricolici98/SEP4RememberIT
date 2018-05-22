@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atlas: {fileID: 4343727234628468602, guid: 8ca96aa9d56645c459374bea1cfc1330, type: 2}
-  imageset: {fileID: 1997223235954846, guid: 20936bd8b106eae4998f603012f48f78, type: 2}
+  imageprefab: {fileID: 0}
 --- !u!114 &114685707543545234
 MonoBehaviour:
   m_ObjectHideFlags: 1

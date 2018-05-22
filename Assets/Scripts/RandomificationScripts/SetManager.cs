@@ -10,51 +10,96 @@ public class SetManager : MonoBehaviour {
     private SpriteAtlas atlas;
     private Component[] childern;
     [SerializeField]
-    private GameObject imageset;
+    private GameObject imageprefab;
 	private List<string> sequence;
+	private GameObject imageset;
 	private RandomManager rm;
+	//Setting up delegates for when the game finishes;
+	public delegate void SetFinished ();
+	public static event SetFinished setFinished;
+	public delegate void GetSequence(List<string> seq);
+	public static event GetSequence sendSequence;
+
+
 	int i= 0;
     // Use this for initialization
     void Start () {
+		StartGame ();
         childern = imageset.GetComponentsInChildren<SpriteRenderer>();
 		rm = new RandomManager ();
 		GetNewSequence (10);
+		change ();
     }
-	
+
+
+	void StartGame(){
+		imageset = Instantiate (imageprefab);
+	}
+
 	// Update is called once per frame
 	void Update () {
 		
-		if(Input.GetKeyDown("space")){
-			
-			ShowNewSet (sequence [i]);
-			//i++;
-		}
+	
 	}
+
+	void OnEnable(){
+		ScoreManager.change+= change;
+	}
+
+	void OnDisable(){
+		ScoreManager.change -= change;
+	}
+	// Update is called once per frame
 
 
 	void ShowNewSet(string item){
-		List<string> set = rm.GetItemSet (item);
+		
 
 		int j = 0;
-	
-		foreach(SpriteRenderer sr in childern)
-		{
+		if (i < sequence.Count) {
+			List<string> set = rm.GetItemSet (item);
+			foreach (SpriteRenderer sr in childern) {
 			
-			sr.sprite = atlas.GetSprite(set[j]);
-			if (set [j] == item) {
-				sr.gameObject.name = set [j] + "right";
-			} else
-				sr.gameObject.name = set [j];
-			j++;
+				sr.sprite = atlas.GetSprite (set [j]);
+				if (set [j] == item) {
+					sr.gameObject.name = set [j] + "right";
+				} else
+					sr.gameObject.name = set [j];
+				j++;
+			}
+			i++;
+			Debug.Log ("current I " + i);
+		} else if (i==sequence.Count+1){
+			Debug.Log ("Set is over ");
+		
+		
 		}
-		i++;
+
 	}
+
 
 	void GetNewSequence(int length){
 		sequence = rm.GetSequence (length);
+		sendSequence (sequence);
 	}
 
 	public int getSetCount(){
 		return i;
+	}
+
+	void change(){
+		
+		if (i == sequence.Count) {
+			Debug.Log ("Cant change anymore");
+			setFinished ();
+			deleteSet ();
+
+		} else {ShowNewSet (sequence [i]);
+		}
+	}
+
+
+	void deleteSet(){
+		Destroy (imageset);
 	}
 }
