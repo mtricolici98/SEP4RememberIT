@@ -5,7 +5,8 @@ using UnityEngine;
 public class OnTouch : MonoBehaviour {
 
     private RuntimePlatform platform = Application.platform;
-
+	public delegate void Clicked (string item);
+	public static event Clicked hasClicked;
     void Update()
     {
         if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer)
@@ -36,7 +37,7 @@ public class OnTouch : MonoBehaviour {
         if (hit)
         {
             Debug.Log(hit.transform.gameObject.name);
-            
+			if(hasClicked!=null)hasClicked(hit.transform.gameObject.name);
         }
     }
 }
