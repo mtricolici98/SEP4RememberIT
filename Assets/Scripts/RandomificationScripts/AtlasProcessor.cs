@@ -15,7 +15,8 @@ public class AtlasProcessor : MonoBehaviour {
 
     private Component[] childern;
 
-    
+    [SerializeField] 
+    private GameObject imageset;
     static System.Random random = new System.Random();
     Array values;
 
@@ -30,7 +31,7 @@ public class AtlasProcessor : MonoBehaviour {
         values = Enum.GetValues(typeof(SpriteTypes));
         sequence = GetSequence();
         Debug.Log("Instantiated Random");
-        childern = GetComponentsInChildren<SpriteRenderer>();
+        childern = imageset.GetComponentsInChildren<SpriteRenderer>();
         Debug.Log("Start Finished");
     }
 	
@@ -46,6 +47,7 @@ public class AtlasProcessor : MonoBehaviour {
             {
                 Debug.Log(set[j]);
                 sr.sprite = atlas.GetSprite(set[j]);
+                sr.gameObject.name = set[j];
                 j++;
             }
             i++;

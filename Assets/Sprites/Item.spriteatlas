@@ -5,7 +5,7 @@ SpriteAtlas:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: New Sprite Atlas
+  m_Name: Item
   m_EditorData:
     textureSettings:
       serializedVersion: 2
@@ -73,5 +73,5 @@ SpriteAtlas:
   - item1
   - item2
   - item18
-  m_Tag: New Sprite Atlas
+  m_Tag: Item
   m_IsVariant: 0

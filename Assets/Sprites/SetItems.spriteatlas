@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SetItems
+  m_EditorData:
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingParameters:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 117e93d244f523943b3cea5448a2105a, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 074ec8ed6639fe44f91d7811e098ca47, type: 3}
+  - {fileID: 21300000, guid: 660b685b17653f14eb4ad7c381a452ba, type: 3}
+  - {fileID: 21300000, guid: 8d12029885eafcb4f827ae7293c5e147, type: 3}
+  - {fileID: 21300000, guid: 74ed6e7bd71ba8d42814618e4cd7d476, type: 3}
+  - {fileID: 21300000, guid: cec224eaab0cbba40b473087e2abea4f, type: 3}
+  - {fileID: 21300000, guid: 6be2d20f8d7482f4ca58cf9e610d99e2, type: 3}
+  - {fileID: 21300000, guid: 029557af09ade5449a59f0176609974d, type: 3}
+  - {fileID: 21300000, guid: 02ef8b14505ee7b49b9b14856c3a8c33, type: 3}
+  - {fileID: 21300000, guid: 8613c7006d599924cbe91901126eb205, type: 3}
+  - {fileID: 21300000, guid: 59d6cc22affdb474f9616f7592ad8d5e, type: 3}
+  - {fileID: 21300000, guid: bf771037eaf57064298c59840b4615fb, type: 3}
+  - {fileID: 21300000, guid: 91e59d39d1efc9f4980aab34efd44142, type: 3}
+  - {fileID: 21300000, guid: e3ba580c97f08e2459865a3b52012508, type: 3}
+  - {fileID: 21300000, guid: db2b1ebc3fd817047afef19282a7a8b4, type: 3}
+  - {fileID: 21300000, guid: 4f5c3471de764814a9f6d5f22c6acbc9, type: 3}
+  - {fileID: 21300000, guid: 5eae9a4a9831cb44a89725e53415aa7f, type: 3}
+  - {fileID: 21300000, guid: 7dfc02d1cb31bed49a12f9be260c59b6, type: 3}
+  - {fileID: 21300000, guid: 880bfd0e0935c7d4a872c7c6ac3bc2c8, type: 3}
+  - {fileID: 21300000, guid: 012b4839614b56b4db61cdd512f7451f, type: 3}
+  - {fileID: 21300000, guid: cb90a6bd695dbcc438e853116eca10b4, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - item8
+  - item9
+  - item20
+  - item15
+  - item14
+  - item17
+  - item16
+  - item11
+  - item10
+  - item13
+  - item12
+  - item19
+  - item18
+  - item6
+  - item7
+  - item4
+  - item5
+  - item2
+  - item3
+  - item1
+  m_Tag: SetItems
+  m_IsVariant: 0
