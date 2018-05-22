@@ -57,7 +57,7 @@ public class AtlasProcessor : MonoBehaviour {
 
     List<string> GetSequence()
     {
-        Debug.Log("Starting Sequence");
+       
         bool over = false;
         List<string> list = new List<string>();
         int itemsAdded = 0;
@@ -69,21 +69,21 @@ public class AtlasProcessor : MonoBehaviour {
             {
                 list.Add(randomSprite);
                 itemsAdded++;
-                Debug.Log("Sequence Item Added");
+
             } else if (itemsAdded == 20)
             {
                 over = true;
             }
 
             }
-        Debug.Log("Sequence generated");
+      
         return list;
         
     }
 
     List<string> GetItemSet(string sequenceSprite)
     {
-        Debug.Log("ItemSetGenerated");
+      
         List<string> set = new List<string>();
         bool over = false;
         string randomSprite;

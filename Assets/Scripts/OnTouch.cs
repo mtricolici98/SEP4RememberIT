@@ -36,6 +36,7 @@ public class OnTouch : MonoBehaviour {
         if (hit)
         {
             Debug.Log(hit.transform.gameObject.name);
+            
         }
     }
 }
