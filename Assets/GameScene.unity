@@ -268,10 +268,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+<<<<<<< HEAD
   - name: 
     clip: {fileID: 8300000, guid: 65426dabbee12ee46b82869b5a67e152, type: 3}
     volume: 0
     pitch: 0.5
+=======
+  - name: background-music
+    clip: {fileID: 8300000, guid: 3e5beac0b2ca5a248afcc9bcd21fdfb5, type: 3}
+    volume: 0.7
+    pitch: 1
+>>>>>>> a585c66d55cf1578e2e996c6e9f65dbac6a74aa1
 --- !u!114 &1795069889
 MonoBehaviour:
   m_ObjectHideFlags: 0

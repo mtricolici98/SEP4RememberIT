@@ -11,24 +11,20 @@ public class ScoreManager : MonoBehaviour {
 
 	private int score;
 	// Use this for initialization
-	void Start () {
-		score = 0;
-		//OnTouch.hasClicked += validateAnswer;
-	}
+
 
 	void OnEnable(){
 		OnTouch.hasClicked += validateAnswer;
 		SetManager.setFinished += SendScore; 
+		GameMaker.roundStart += NewScore;
 	}
 
 	void OnDisable(){
 		OnTouch.hasClicked -= validateAnswer;
-		SetManager.setFinished += SendScore; 
+		SetManager.setFinished -= SendScore; 
+		GameMaker.roundStart -= NewScore;
 	}
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 
 	void validateAnswer(string item){
 		Debug.Log ("EVENT ITEM "+  item);
@@ -57,5 +53,7 @@ public class ScoreManager : MonoBehaviour {
 
 	}
 
-
+	void NewScore(int seqlen){
+		score = 0;
+	}
 }
