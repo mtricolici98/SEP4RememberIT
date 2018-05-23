@@ -10,15 +10,17 @@ public class GameMaker : MonoBehaviour {
 	public static event StartRound roundStart;
 	private List<string> currentSequence;
 	void Awake(){
+		
 		if (Instance == null) {
 			Instance = this;
 		} else {
 			Debug.Log ("Multiple Gamemakers");
 		}
+		DontDestroyOnLoad (this.gameObject);
 	}
 
 	void Start(){
-	StartGame (10);
+	//StartGame (10);
 	}
 
 	void OnEnable(){
@@ -38,7 +40,7 @@ public class GameMaker : MonoBehaviour {
 
 
 
-	void StartGame(int seqlen){
+	public void StartGame(int seqlen){
 		roundStart (seqlen);
 	}
 
