@@ -267,7 +267,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c2f170df3aa3447a4608bcfb11ac29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: {fileID: 0}
+  sounds:
+  - name: 
+    clip: {fileID: 8300000, guid: 65426dabbee12ee46b82869b5a67e152, type: 3}
+    volume: 0
+    pitch: 0.5
 --- !u!114 &1795069889
 MonoBehaviour:
   m_ObjectHideFlags: 0
