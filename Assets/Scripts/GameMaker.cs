@@ -18,7 +18,7 @@ public class GameMaker : MonoBehaviour {
 	}
 
 	void Start(){
-	//	StartGame (10);
+	StartGame (10);
 	}
 
 	void OnEnable(){
