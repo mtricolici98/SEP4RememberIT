@@ -13,44 +13,33 @@ public class SetManager : MonoBehaviour {
     private GameObject imageprefab;
 	private List<string> sequence;
 	private GameObject imageset;
-	private RandomManager rm;
+	private RandomManager rm  = new RandomManager ();
+	int i= 0;
 	//Setting up delegates for when the game finishes;
 	public delegate void SetFinished ();
 	public static event SetFinished setFinished;
 	public delegate void GetSequence(List<string> seq);
 	public static event GetSequence sendSequence;
 
-
-	int i= 0;
-    // Use this for initialization
-    void Start () {
-		StartGame ();
-        childern = imageset.GetComponentsInChildren<SpriteRenderer>();
-		rm = new RandomManager ();
-		GetNewSequence (10);
-		change ();
-    }
-
-
-	void StartGame(){
-		imageset = Instantiate (imageprefab);
-	}
-
-	// Update is called once per frame
-	void Update () {
-		
-	
-	}
-
 	void OnEnable(){
 		ScoreManager.change+= change;
+		GameMaker.roundStart += StartGame;
 	}
 
 	void OnDisable(){
 		ScoreManager.change -= change;
+		GameMaker.roundStart -= StartGame;
 	}
-	// Update is called once per frame
-
+		
+	void StartGame(int seqlen){
+		
+		imageset = Instantiate (imageprefab);
+		childern = imageset.GetComponentsInChildren<SpriteRenderer>();
+		GetNewSequence (seqlen);
+		ShowNewSet (sequence[0]);
+		//change ();
+	}
+		
 
 	void ShowNewSet(string item){
 		
