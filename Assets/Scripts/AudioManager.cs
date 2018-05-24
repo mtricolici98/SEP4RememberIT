@@ -9,7 +9,7 @@ public class Sound{
 	public AudioClip clip;
 	private AudioSource source;
 	[Range(0f, 1f)]
-	public float volume = 0.7f;
+	public float volume = 0.5f;
 	[Range(0.5f, 1.5f)]
 	public float pitch = 1f;
 
@@ -25,6 +25,15 @@ public class Sound{
 
 	}
 
+	public void Mute(){
+		source.volume = 0f;
+		source.pitch=0f;
+	}
+	public void unMute(){
+		source.volume = 0.5f;
+		source.pitch=1f;
+	}
+
 }
  	
 
@@ -34,16 +43,22 @@ public class AudioManager : MonoBehaviour {
 	public static AudioManager instance;
 
 	 // to be editable from the inspectiors but not accesable from scripts :)
-
+	void OnEnable(){
+		UIScript.toggleMute += toggleMute;
+	}
+	void OnDisable(){
+		UIScript.toggleMute -= toggleMute;
+	}
 	[SerializeField]
 	public Sound[] sounds;
-
+	private bool muted;
 	void Awake(){
 		if (instance != null) {
 			Debug.LogError ("More than one AudioManager in the scene ");
 		} else {
 			instance = this;
 		}
+		muted = false;
 	}
 
 	void Start(){
@@ -64,6 +79,23 @@ public class AudioManager : MonoBehaviour {
 
 		}
 		
+	}
+
+	void toggleMute(){
+		Debug.Log ("MUTING");
+		if (!muted) {
+			for (int i = 0; i < sounds.Length; i++) {
+
+				sounds [i].Mute ();
+				muted = true;
+			}
+		} else if (muted) {
+			for (int i = 0; i < sounds.Length; i++) {
+				sounds [i].unMute ();
+				muted = false;
+			}
+		}
+
 	}
 
 

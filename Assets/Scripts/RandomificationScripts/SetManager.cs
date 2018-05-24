@@ -24,11 +24,13 @@ public class SetManager : MonoBehaviour {
 	void OnEnable(){
 		ScoreManager.change+= change;
 		GameMaker.roundStart += StartGame;
+		UIScript.hasToFinish += deleteSet;
 	}
 
 	void OnDisable(){
 		ScoreManager.change -= change;
 		GameMaker.roundStart -= StartGame;
+		UIScript.hasToFinish -= deleteSet;
 	}
 		
 	void StartGame(int seqlen){

@@ -17,12 +17,14 @@ public class ScoreManager : MonoBehaviour {
 		OnTouch.hasClicked += validateAnswer;
 		SetManager.setFinished += SendScore; 
 		GameMaker.roundStart += NewScore;
+		UIScript.hasToFinish += SendScore;
 	}
 
 	void OnDisable(){
 		OnTouch.hasClicked -= validateAnswer;
 		SetManager.setFinished -= SendScore; 
 		GameMaker.roundStart -= NewScore;
+		UIScript.hasToFinish -= SendScore;
 	}
 
 
