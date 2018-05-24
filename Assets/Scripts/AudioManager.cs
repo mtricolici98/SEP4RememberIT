@@ -66,7 +66,7 @@ public class AudioManager : MonoBehaviour {
 			GameObject _go = new GameObject ("Sound_ " + i + "_" + sounds [i].name);
 			sounds [i].setSource (_go.AddComponent<AudioSource> ());
 		}
-		PlaySound ("bensound-deepblue.mp3");
+		//PlaySound ("bensound-deepblue.mp3");
 
 	}
 
