@@ -18,6 +18,7 @@ public class ScoreManager : MonoBehaviour {
 		SetManager.setFinished += SendScore; 
 		GameMaker.roundStart += NewScore;
 		UIScript.hasToFinish += SendScore;
+		Timer.timeEnd += SendScore;
 	}
 
 	void OnDisable(){
@@ -25,6 +26,7 @@ public class ScoreManager : MonoBehaviour {
 		SetManager.setFinished -= SendScore; 
 		GameMaker.roundStart -= NewScore;
 		UIScript.hasToFinish -= SendScore;
+		Timer.timeEnd -= SendScore;
 	}
 
 

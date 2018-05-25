@@ -25,24 +25,33 @@ public class SetManager : MonoBehaviour {
 		ScoreManager.change+= change;
 		GameMaker.roundStart += StartGame;
 		UIScript.hasToFinish += deleteSet;
+		Timer.stopSeqDisp += StartSet;
+		Timer.timeEnd += deleteSet;
 	}
 
 	void OnDisable(){
 		ScoreManager.change -= change;
 		GameMaker.roundStart -= StartGame;
 		UIScript.hasToFinish -= deleteSet;
+		Timer.stopSeqDisp -= StartSet;
+		Timer.timeEnd -= deleteSet;
 	}
 		
 	void StartGame(int seqlen){
 		
-		imageset = Instantiate (imageprefab);
-		childern = imageset.GetComponentsInChildren<SpriteRenderer>();
+
 		GetNewSequence (seqlen);
-		ShowNewSet (sequence[0]);
+		//ShowNewSet (sequence[0]);
 		//change ();
 	}
 		
+	void StartSet(){
+		imageset = Instantiate (imageprefab);
+		childern = imageset.GetComponentsInChildren<SpriteRenderer>();
+		i = 0;
+		change ();
 
+	}
 	void ShowNewSet(string item){
 		
 

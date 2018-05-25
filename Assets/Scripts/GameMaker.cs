@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameMaker : MonoBehaviour {
 	int score ;
-
+	float timedone;
 	public static GameMaker Instance {get;set;}
 	public delegate void StartRound(int seqlen);
 	public static event StartRound roundStart;
@@ -28,6 +28,8 @@ public class GameMaker : MonoBehaviour {
 		SetManager.setFinished += finish;
 		ScoreManager.notifyScore += getScore;
 		SetManager.sendSequence += Sequence;
+		Timer.reportTimeLeft += setFinalTime;
+		Timer.timeEnd += finish;
 	}
 
 	
@@ -36,6 +38,8 @@ public class GameMaker : MonoBehaviour {
 		SetManager.setFinished -= finish;
 		ScoreManager.notifyScore -= getScore;
 		SetManager.sendSequence -= Sequence;
+		Timer.reportTimeLeft += setFinalTime;
+		Timer.timeEnd -= finish;
 	}
 
 
@@ -45,7 +49,10 @@ public class GameMaker : MonoBehaviour {
 	}
 
 	void finish(){
+		if (timedone == 0f)
+			timedone = 1f;
 		Debug.Log ("Start endscreen");
+		Debug.Log (score * timedone + "Final Score");
 		Debug.Log ("Save Score");
 	}
 
@@ -57,5 +64,9 @@ public class GameMaker : MonoBehaviour {
 	void Sequence(List<string> sc) {
 		currentSequence = sc;
 		Debug.Log (sc.ToString());
+	}
+
+	void setFinalTime(float val){
+		timedone = val;
 	}
 }

@@ -16,6 +16,7 @@ public class UIScript : MonoBehaviour {
 	public Button btnHard;
 	public GameObject menuPanel;
 	public GameObject difficultyPanel;
+	public GameObject seqPanel;
 	public Button resumeButton;
 	public Button goToMainMenuButton;
 	public Button quitPauseButton;
@@ -46,27 +47,38 @@ public class UIScript : MonoBehaviour {
 		muteButton.onClick.AddListener (mute);
 	}
 
+	void OnEnable(){
+		Timer.stopSeqDisp += ShowPauseButton;
+	}
+	void OnDisable(){
+		Timer.stopSeqDisp -= ShowPauseButton;
+	}
+
+
 	void StartGame(string diff){
 		//SceneManager.LoadScene ("GameMainScene");
 		switch(diff){
 		case "easy" :{ 
 				difficultyPanel.SetActive (false);
 				GameMaker.Instance.StartGame (8);
-				pauseButton.gameObject.SetActive (true);
+				//pauseButton.gameObject.SetActive (true);
+
 			}
 
 			break;
 		case "medium" :{ 
 				difficultyPanel.SetActive (false);
 				GameMaker.Instance.StartGame (11);
-				pauseButton.gameObject.SetActive (true);
+				//pauseButton.gameObject.SetActive (true);
+				ActivateSeqPanel ();
 			}
 
 			break;
 		case "hard" :{ 
 				difficultyPanel.SetActive (false);
 				GameMaker.Instance.StartGame (15);
-				pauseButton.gameObject.SetActive (true);
+			//	pauseButton.gameObject.SetActive (true);
+				ActivateSeqPanel ();
 			}
 
 			break;
@@ -86,12 +98,14 @@ public class UIScript : MonoBehaviour {
 	void PauseGame(){
 		pauseMenu.SetActive (true);
 		pauseButton.gameObject.SetActive (false);
+		Time.timeScale = 0f;
 		togglePause ();
 	}
 
 	void ResumeGame(){
 		pauseMenu.SetActive (false);
 		pauseButton.gameObject.SetActive (true);
+		Time.timeScale = 1f;
 		togglePause ();
 	}
 
@@ -99,7 +113,8 @@ public class UIScript : MonoBehaviour {
 		hasToFinish ();
 		pauseMenu.SetActive (false);
 		menuPanel.SetActive (true);
-		
+		Time.timeScale = 1f;
+		togglePause ();
 	}
 
 	void quitGame(){
@@ -109,5 +124,14 @@ public class UIScript : MonoBehaviour {
 
 	void mute(){
 		toggleMute ();
+	}
+
+	void ActivateSeqPanel(){
+		seqPanel.SetActive (true);
+		Debug.Log ("Actviating seq");
+	}
+
+	void ShowPauseButton(){
+		pauseButton.gameObject.SetActive (true);
 	}
 }
