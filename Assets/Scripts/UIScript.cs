@@ -7,9 +7,10 @@ public class UIScript : MonoBehaviour {
 
 		
 	public Button playButton;
-		
+	public Sprite musicOn;
+	public Sprite musicOff;
 	public Button pauseButton;
-
+	bool muted =false;
 	public GameObject pauseMenu;
 	public Button btnEasy;
 	public Button btnMedium;
@@ -60,7 +61,7 @@ public class UIScript : MonoBehaviour {
 		switch(diff){
 		case "easy" :{ 
 				difficultyPanel.SetActive (false);
-				GameMaker.Instance.StartGame (8);
+				GameMaker.Instance.StartGame (5);
 				//pauseButton.gameObject.SetActive (true);
 
 			}
@@ -68,7 +69,7 @@ public class UIScript : MonoBehaviour {
 			break;
 		case "medium" :{ 
 				difficultyPanel.SetActive (false);
-				GameMaker.Instance.StartGame (11);
+				GameMaker.Instance.StartGame (8);
 				//pauseButton.gameObject.SetActive (true);
 				ActivateSeqPanel ();
 			}
@@ -76,7 +77,7 @@ public class UIScript : MonoBehaviour {
 			break;
 		case "hard" :{ 
 				difficultyPanel.SetActive (false);
-				GameMaker.Instance.StartGame (15);
+				GameMaker.Instance.StartGame (11);
 			//	pauseButton.gameObject.SetActive (true);
 				ActivateSeqPanel ();
 			}
@@ -124,6 +125,7 @@ public class UIScript : MonoBehaviour {
 
 	void mute(){
 		toggleMute ();
+	
 	}
 
 	void ActivateSeqPanel(){

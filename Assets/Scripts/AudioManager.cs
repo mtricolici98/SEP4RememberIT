@@ -8,6 +8,8 @@ public class Sound{
 	public string name;
 	public AudioClip clip;
 	private AudioSource source;
+	public bool PlayOnAwake;
+	public bool setLoop;
 	[Range(0f, 1f)]
 	public float volume = 0.5f;
 	[Range(0.5f, 1.5f)]
@@ -16,12 +18,17 @@ public class Sound{
 	public void setSource(AudioSource _source){
 		source = _source;
 		source.clip = clip;
+		source.loop = setLoop;
+		source.playOnAwake = PlayOnAwake;
 		source.Play ();
 
 	}
 	public void Play(){
+		
 		source.volume = volume;
+		//Debug.Log ("I GOT HERE");
 		source.pitch=pitch;
+		source.Play ();
 
 	}
 
@@ -34,6 +41,8 @@ public class Sound{
 		source.pitch=1f;
 	}
 
+
+
 }
  	
 
@@ -45,9 +54,11 @@ public class AudioManager : MonoBehaviour {
 	 // to be editable from the inspectiors but not accesable from scripts :)
 	void OnEnable(){
 		UIScript.toggleMute += toggleMute;
+		OnTouch.hasClicked += PlayClickSound;
 	}
 	void OnDisable(){
 		UIScript.toggleMute -= toggleMute;
+		OnTouch.hasClicked -= PlayClickSound;
 	}
 	[SerializeField]
 	public Sound[] sounds;
@@ -60,20 +71,25 @@ public class AudioManager : MonoBehaviour {
 		}
 		muted = false;
 	}
-
+	GameObject _go ;
 	void Start(){
+		
+			_go = new GameObject ("Sound" + sounds [0].name);
 		for (int i = 0; i < sounds.Length; i++) {
-			GameObject _go = new GameObject ("Sound_ " + i + "_" + sounds [i].name);
-			sounds [i].setSource (_go.AddComponent<AudioSource> ());
+			sounds[i].setSource(_go.AddComponent<AudioSource>());
 		}
-		//PlaySound ("bensound-deepblue.mp3");
+		PlaySound ("background");
+
 
 	}
 
 	public void PlaySound(string _name){
 		for (int i = 0; i < sounds.Length; i++) {
 			if (sounds [i].name == _name) {
+			//	sounds[i].setSource(_go.AddComponent<AudioSource>());
 				sounds [i].Play ();
+
+
 				return;
 			}
 
@@ -82,23 +98,32 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	void toggleMute(){
-		Debug.Log ("MUTING");
+		
 		if (!muted) {
 			for (int i = 0; i < sounds.Length; i++) {
 
 				sounds [i].Mute ();
+				Debug.Log ("MUTING");
 				muted = true;
 			}
+
 		} else if (muted) {
 			for (int i = 0; i < sounds.Length; i++) {
 				sounds [i].unMute ();
+				Debug.Log ("UNMUTING");
 				muted = false;
 			}
+
 		}
 
 	}
 
 
+
+	void PlayClickSound(string args){
+		PlaySound ("click");
+		//Debug.Log ("Playing Click");
+	}
 
 
 
