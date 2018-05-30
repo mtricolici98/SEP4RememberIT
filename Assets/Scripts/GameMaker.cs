@@ -8,6 +8,7 @@ public class GameMaker : MonoBehaviour {
 	float timedone;
 	public Text currentScore;
 	public Text highscore;
+	public Text CorrectAnswers;
 	public static GameMaker Instance {get;set;}
 	public delegate void StartRound(int seqlen);
 	public static event StartRound roundStart;
@@ -32,7 +33,7 @@ public class GameMaker : MonoBehaviour {
 
 		ScoreManager.notifyScore += getScore;
 
-		Timer.reportTimeLeft += setFinalTime;
+		Timer.reportTimeEnd += setFinalTime;
 		Timer.timeEnd += finish;
 
 	}
@@ -43,7 +44,7 @@ public class GameMaker : MonoBehaviour {
 		
 		ScoreManager.notifyScore -= getScore;
 
-		Timer.reportTimeLeft -= setFinalTime;
+		Timer.reportTimeEnd -= setFinalTime;
 		Timer.timeEnd -= finish;
 	}
 
@@ -58,7 +59,7 @@ public class GameMaker : MonoBehaviour {
 		if (timedone == 0f)
 			timedone = 1f;
 		Debug.Log ("Start endscreen");
-
+		CorrectAnswers.text = score.ToString ();
 		Debug.Log (score * timedone + "Final Score");
 		float currscore = (score * timedone);
 		data.Load ();

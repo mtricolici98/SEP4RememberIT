@@ -10,7 +10,7 @@ public class UIScript : MonoBehaviour {
 	public Sprite musicOn;
 	public Sprite musicOff;
 	public Button pauseButton;
-
+	public Text timeleft;
 	public GameObject pauseMenu;
 	public Button btnEasy;
 	public Button btnMedium;
@@ -59,11 +59,13 @@ public class UIScript : MonoBehaviour {
 		Timer.stopSeqDisp += ShowPauseButton;
 		SetManager.setFinished += displayEndScreen;
 		Timer.timeEnd += displayEndScreen;
+		Timer.reportTimeLeft += setTimeLeft;
 	}
 	void OnDisable(){
 		Timer.stopSeqDisp -= ShowPauseButton;
 		SetManager.setFinished -= displayEndScreen;
 		Timer.timeEnd -= displayEndScreen;
+		Timer.reportTimeLeft -= setTimeLeft;
 	}
 
 
@@ -74,6 +76,7 @@ public class UIScript : MonoBehaviour {
 				difficultyPanel.SetActive (false);
 				GameMaker.Instance.StartGame (5);
 				lastdiff = 5;
+				timeleft.gameObject.SetActive (true);
 				//pauseButton.gameObject.SetActive (true);
 
 			}
@@ -83,6 +86,7 @@ public class UIScript : MonoBehaviour {
 				difficultyPanel.SetActive (false);
 				GameMaker.Instance.StartGame (8);
 				lastdiff = 8;
+				timeleft.gameObject.SetActive (true);
 				//pauseButton.gameObject.SetActive (true);
 
 			}
@@ -92,6 +96,7 @@ public class UIScript : MonoBehaviour {
 				difficultyPanel.SetActive (false);
 				GameMaker.Instance.StartGame (11);
 				lastdiff = 11;
+				timeleft.gameObject.SetActive (true);
 			//	pauseButton.gameObject.SetActive (true);
 
 			}
@@ -106,7 +111,7 @@ public class UIScript : MonoBehaviour {
 	}
 	void ChangeToDiff()
 	{
-
+		
 		menuPanel.SetActive (false);
 		difficultyPanel.SetActive (true);
 	}
@@ -114,6 +119,7 @@ public class UIScript : MonoBehaviour {
 		pauseMenu.SetActive (true);
 		pauseButton.gameObject.SetActive (false);
 		Time.timeScale = 0f;
+		timeleft.gameObject.SetActive (false);
 		togglePause ();
 	}
 
@@ -121,6 +127,7 @@ public class UIScript : MonoBehaviour {
 		pauseMenu.SetActive (false);
 		pauseButton.gameObject.SetActive (true);
 		Time.timeScale = 1f;
+		timeleft.gameObject.SetActive (true);
 		togglePause ();
 	}
 
@@ -158,16 +165,24 @@ public class UIScript : MonoBehaviour {
 
 	void PlayAgain(){
 		GameMaker.Instance.StartGame (lastdiff);
+		timeleft.gameObject.SetActive (true);
 		EndScreen.SetActive (false);
 	}
 
 	void displayEndScreen(){
 		EndScreen.SetActive (true);
+		timeleft.gameObject.SetActive (false);
 	}
 
 	void EndGoToMM(){
 		menuPanel.SetActive (true);
 		pauseButton.gameObject.SetActive (false);
 		EndScreen.SetActive (false);
+	}
+
+
+	void setTimeLeft(float val){
+		timeleft.text = val.ToString ();
+	
 	}
 }

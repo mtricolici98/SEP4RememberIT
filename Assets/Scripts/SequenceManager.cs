@@ -38,10 +38,13 @@ public class SequenceManager : MonoBehaviour {
 		images = seqPanel.GetComponentsInChildren<Image> (includeInactive: true);
 		
 		//Image tmp = null;
-		Debug.Log("List size" + images.Length);
 		for (int i = 1; i <= seq.Count; i++) {
 			((Image)	images [i]).sprite = atlas.GetSprite (seq [i-1]);
 			((Image)	images [i]).gameObject.SetActive (true);
+		}
+
+		for (int i = seq.Count+1; i < images.Length; i++) {
+			((Image)	images [i]).gameObject.SetActive (false);
 		}
 
 	}

@@ -5,15 +5,14 @@ using UnityEngine;
 public class Timer : MonoBehaviour {
 	public delegate void SeqTimerDone ();
 	public static event SeqTimerDone stopSeqDisp;
+	public delegate void GameTimer(float val);
+	public static event GameTimer reportTimeLeft;
 	public delegate void GameTimerDone(float val);
-	public static event GameTimerDone reportTimeLeft;
+	public static event GameTimerDone reportTimeEnd;
 	public delegate void NoMoreTime();
 	public static event NoMoreTime timeEnd;
 
 
-	void Start() { 
-		reportTimeLeft (0f);
-	}
 
 
 	void OnEnable(){
@@ -36,11 +35,14 @@ public class Timer : MonoBehaviour {
 	public IEnumerator StartCountdownSeq(float countdownValue = 5)
 	{
 		currCountdownValue = countdownValue;
+
 		while (currCountdownValue > 0)
 		{
-			Debug.Log("Countdown: " + currCountdownValue);
+			reportTimeLeft (currCountdownValue);
+			Debug.Log (currCountdownValue);
 			yield return new WaitForSeconds(1.0f);
 			currCountdownValue--;
+
 		}
 		stopSeqDisp ();
 		StartCoroutine (StartCountdownGame ());
@@ -49,15 +51,19 @@ public class Timer : MonoBehaviour {
 
 	public IEnumerator StartCountdownGame(float countdownValue = 30)
 	{
+		
 		currCountdownValue = countdownValue;
+
 		while (currCountdownValue > 0)
 		{
-			Debug.Log("Countdown: " + currCountdownValue);
+			Debug.Log (currCountdownValue);
+			reportTimeLeft (currCountdownValue);
 			yield return new WaitForSeconds(1.0f);
 			currCountdownValue--;
+
 		}
 		timeEnd ();
-		reportTimeLeft (0f);
+		reportTimeEnd (0f);
 	}
 
 
@@ -66,7 +72,7 @@ public class Timer : MonoBehaviour {
 	}
 
 	void StopGameTimer(){
-		reportTimeLeft (currCountdownValue);
+		reportTimeEnd (currCountdownValue);
 		StopAllCoroutines ();
 	}
 }
