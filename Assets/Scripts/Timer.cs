@@ -9,11 +9,19 @@ public class Timer : MonoBehaviour {
 	public static event GameTimerDone reportTimeLeft;
 	public delegate void NoMoreTime();
 	public static event NoMoreTime timeEnd;
+
+
+	void Start() { 
+		reportTimeLeft (0f);
+	}
+
+
 	void OnEnable(){
 
 		//GameMaker.roundStart += StartGame;
 		SetManager.sendSequence += StartSequenceTimer;
 		SetManager.setFinished += StopGameTimer;
+		UIScript.hasToFinish += StopGameTimer;
 	}
 
 	void OnDisable(){
@@ -21,6 +29,7 @@ public class Timer : MonoBehaviour {
 		//	GameMaker.roundStart -= StartGame;
 		SetManager.sendSequence -= StartSequenceTimer;
 		SetManager.setFinished -= StopGameTimer;
+		UIScript.hasToFinish -= StopGameTimer;
 	}
 
 	float currCountdownValue;

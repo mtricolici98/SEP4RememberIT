@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.U2D;
 
 public class SequenceManager : MonoBehaviour {
-	[SerializeField]
-	private SpriteAtlas atlas;
+	
+	public SpriteAtlas atlas;
 	public GameObject seqPanel;
 	public GameObject seqMainPanel;
 	private Component[] images;

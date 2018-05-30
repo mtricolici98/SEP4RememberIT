@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameMaker : MonoBehaviour {
 	int score ;
 	float timedone;
+	public Text currentScore;
+	public Text highscore;
 	public static GameMaker Instance {get;set;}
 	public delegate void StartRound(int seqlen);
 	public static event StartRound roundStart;
+	private PersitanceScript data;
 	private List<string> currentSequence;
 	void Awake(){
 		
@@ -20,25 +24,26 @@ public class GameMaker : MonoBehaviour {
 	}
 
 	void Start(){
-	//StartGame (10);
+		data = new PersitanceScript ();
 	}
 
 	void OnEnable(){
 		
-		SetManager.setFinished += finish;
+
 		ScoreManager.notifyScore += getScore;
-		SetManager.sendSequence += Sequence;
+
 		Timer.reportTimeLeft += setFinalTime;
 		Timer.timeEnd += finish;
+
 	}
 
 	
 
 	void OnDisable(){
-		SetManager.setFinished -= finish;
+		
 		ScoreManager.notifyScore -= getScore;
-		SetManager.sendSequence -= Sequence;
-		Timer.reportTimeLeft += setFinalTime;
+
+		Timer.reportTimeLeft -= setFinalTime;
 		Timer.timeEnd -= finish;
 	}
 
@@ -49,24 +54,40 @@ public class GameMaker : MonoBehaviour {
 	}
 
 	void finish(){
+		
 		if (timedone == 0f)
 			timedone = 1f;
 		Debug.Log ("Start endscreen");
+
 		Debug.Log (score * timedone + "Final Score");
-		Debug.Log ("Save Score");
+		float currscore = (score * timedone);
+		data.Load ();
+		if (data.score >= currscore) {
+			currentScore.text = currscore.ToString();
+			highscore.text = data.score.ToString();
+			data.Save (data.score);
+		} else {
+			currentScore.text = currscore.ToString();
+			highscore.text = currscore.ToString();
+			data.Save (currscore);
+		}
+
+
 	}
 
 	void getScore(int sc){
 		score = sc;
-		Debug.Log ("Final Score " + score);
+
 	}
 
-	void Sequence(List<string> sc) {
-		currentSequence = sc;
-		Debug.Log (sc.ToString());
-	}
+
 
 	void setFinalTime(float val){
 		timedone = val;
+		finish ();
 	}
+
+
+
+
 }
