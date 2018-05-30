@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour {
 	public static event finalScore notifyScore;
 
 	private int score;
-	// Use this for initialization
+
 
 
 	void OnEnable(){

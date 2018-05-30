@@ -11,15 +11,6 @@ public class SequenceManager : MonoBehaviour {
 	public GameObject seqMainPanel;
 	private Component[] images;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 	void OnEnable(){
 
 		//GameMaker.roundStart += StartGame;
