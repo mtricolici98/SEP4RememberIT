@@ -107,8 +107,8 @@ public class UIScript : MonoBehaviour {
 			break;
 		case "medium" :{ 
 				difficultyPanel.SetActive (false);
-				GameMaker.Instance.StartGame (8);
-				lastdiff = 8;
+				GameMaker.Instance.StartGame (7);
+				lastdiff = 7;
 				timeleft.gameObject.SetActive (true);
 				//pauseButton.gameObject.SetActive (true);
 
@@ -117,8 +117,8 @@ public class UIScript : MonoBehaviour {
 			break;
 		case "hard" :{ 
 				difficultyPanel.SetActive (false);
-				GameMaker.Instance.StartGame (11);
-				lastdiff = 11;
+				GameMaker.Instance.StartGame (9);
+				lastdiff = 9;
 				timeleft.gameObject.SetActive (true);
 			//	pauseButton.gameObject.SetActive (true);
 

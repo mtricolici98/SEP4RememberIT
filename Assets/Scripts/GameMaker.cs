@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameMaker : MonoBehaviour {
 	int score ;
+	int seqlen; 
 	float timedone;
 	public Text currentScore;
 	public Text highscore;
@@ -51,6 +52,7 @@ public class GameMaker : MonoBehaviour {
 
 
 	public void StartGame(int seqlen){
+		this.seqlen = seqlen;
 		roundStart (seqlen);
 	}
 
@@ -59,18 +61,21 @@ public class GameMaker : MonoBehaviour {
 		if (timedone == 0f)
 			timedone = 1f;
 		Debug.Log ("Start endscreen");
+
 		CorrectAnswers.text = score.ToString ();
-		Debug.Log (score * timedone + "Final Score");
-		float currscore = (score * timedone);
+		float currscore = (score * 10) * seqlen;
+		Debug.Log (score + " / " + seqlen + " * 10 ");
+		int intscore = Mathf.RoundToInt (currscore);
+		Debug.Log (currscore+ "Final Score");
 		data.Load ();
-		if (data.score >= currscore) {
-			currentScore.text = currscore.ToString();
+		if (data.score >= intscore) {
+			currentScore.text = intscore.ToString();
 			highscore.text = data.score.ToString();
 			data.Save (data.score);
 		} else {
-			currentScore.text = currscore.ToString();
-			highscore.text = currscore.ToString();
-			data.Save (currscore);
+			currentScore.text = intscore.ToString();
+			highscore.text = intscore.ToString();
+			data.Save (intscore);
 		}
 
 
