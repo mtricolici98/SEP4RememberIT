@@ -3775,8 +3775,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playButton: {fileID: 730214195}
-  musicOn: {fileID: 21300000, guid: c9e210d9a62564f55a85c50e3af22c6c, type: 3}
-  musicOff: {fileID: 21300000, guid: b243c812baeaf4841b1a8e3c165eaee0, type: 3}
+  musicOn: {fileID: 21300000, guid: b243c812baeaf4841b1a8e3c165eaee0, type: 3}
+  musicOff: {fileID: 21300000, guid: c9e210d9a62564f55a85c50e3af22c6c, type: 3}
   pauseButton: {fileID: 489224883}
   timeleft: {fileID: 1016069060}
   pauseMenu: {fileID: 1005561905}
