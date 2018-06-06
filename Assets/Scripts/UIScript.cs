@@ -26,6 +26,24 @@ public class UIScript : MonoBehaviour {
 	public Button quitPauseButton;
 	public Button quitMMButton;
 	public Button muteButton;
+	public Button instLeft;
+	public Button instRight;
+	public Button instBack;
+	public GameObject InstMenu;
+	public Image instImage;
+	public List<Sprite> instImages;
+	private int instIdex;
+	public Button instButton;
+
+
+
+
+
+
+
+
+
+
 	public delegate void FinishEarly ();
 	public static event FinishEarly hasToFinish;
 	public delegate void ToggleMute();
@@ -53,6 +71,11 @@ public class UIScript : MonoBehaviour {
 		muteButton.onClick.AddListener (mute);
 		endGoToMM.onClick.AddListener (EndGoToMM);
 		endPlayAgain.onClick.AddListener (PlayAgain);
+		instButton.onClick.AddListener (ShowInst);
+		instBack.onClick.AddListener (instBackAct);
+		instLeft.onClick.AddListener (instPrev);
+		instRight.onClick.AddListener (instNext);
+		instIdex = 0;
 	}
 
 	void OnEnable(){
@@ -84,8 +107,8 @@ public class UIScript : MonoBehaviour {
 			break;
 		case "medium" :{ 
 				difficultyPanel.SetActive (false);
-				GameMaker.Instance.StartGame (8);
-				lastdiff = 8;
+				GameMaker.Instance.StartGame (7);
+				lastdiff = 7;
 				timeleft.gameObject.SetActive (true);
 				//pauseButton.gameObject.SetActive (true);
 
@@ -94,8 +117,8 @@ public class UIScript : MonoBehaviour {
 			break;
 		case "hard" :{ 
 				difficultyPanel.SetActive (false);
-				GameMaker.Instance.StartGame (11);
-				lastdiff = 11;
+				GameMaker.Instance.StartGame (9);
+				lastdiff = 9;
 				timeleft.gameObject.SetActive (true);
 			//	pauseButton.gameObject.SetActive (true);
 
@@ -185,4 +208,50 @@ public class UIScript : MonoBehaviour {
 		timeleft.text = val.ToString ();
 	
 	}
+
+	void ShowInst(){
+		InstMenu.SetActive (true);
+		instImage.sprite = instImages [instIdex];
+		instLeft.gameObject.SetActive (false);
+		instRight.gameObject.SetActive (true);
+	}
+
+
+	void instNext(){
+		instIdex += 1;
+		instImage.sprite = instImages [instIdex];
+		if (instIdex == 0) {
+			instLeft.gameObject.SetActive (false);
+			instRight.gameObject.SetActive (true);
+		} else if (instIdex == 2) {
+			instLeft.gameObject.SetActive (true);
+			instRight.gameObject.SetActive (false);
+		} else {
+			instLeft.gameObject.SetActive (true);
+			instRight.gameObject.SetActive (true);
+		}
+	}
+
+	void instPrev(){
+		instIdex -= 1;
+		instImage.sprite = instImages [instIdex];
+		if (instIdex == 0) {
+			instLeft.gameObject.SetActive (false);
+			instRight.gameObject.SetActive (true);
+		} else if (instIdex == 2) {
+			instLeft.gameObject.SetActive (true);
+			instRight.gameObject.SetActive (false);
+		} else {
+			instLeft.gameObject.SetActive (true);
+			instRight.gameObject.SetActive (true);
+		}
+	}
+
+	void instBackAct(){
+		InstMenu.SetActive (false);
+		instIdex = 0;
+		instLeft.gameObject.SetActive (false);
+		instRight.gameObject.SetActive (true);
+	}
+
 }

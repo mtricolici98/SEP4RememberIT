@@ -51,7 +51,6 @@ public class AudioManager : MonoBehaviour {
 
 	public static AudioManager instance;
 
-	 // to be editable from the inspectiors but not accesable from scripts :)
 	void OnEnable(){
 		UIScript.toggleMute += toggleMute;
 		OnTouch.hasClicked += PlayClickSound;
